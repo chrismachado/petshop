@@ -3,42 +3,50 @@ package pet.shop.petshop.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import pet.shop.petshop.dto.TutorDto;
+import pet.shop.petshop.dto.AnimalDto;
 import pet.shop.petshop.model.Tutor;
+import pet.shop.petshop.service.AnimalService;
 import pet.shop.petshop.service.TutorService;
 
-@RestController
-@RequestMapping("api/v1/tutor")
+@Controller
 public class TutorController {
     
+    @Autowired
+    private AnimalService animalService;
 
     @Autowired
     private TutorService tutorService;
 
-    @GetMapping("/todos")
-    public List<Tutor> all() {
-        return tutorService.all();
+
+    @GetMapping("tutor/cadastrar")
+    public String cadastrarTutorForm() {
+        return "/tutor/formCadastrarTutor";
     }
 
-    @GetMapping("{id}")
-    public Tutor one(@PathVariable Long id) {
-        return tutorService.one(id);
-    }
-    
-    @PostMapping
-    public Tutor save(@RequestBody TutorDto dto) {
-        Tutor tutor = dto.toTutor();
+    @PostMapping("tutor/cadastrar")
+    public String cadastrarTutorForm(Tutor tutor) {
         tutorService.save(tutor);
-        return tutor;
+        return "redirect:/tutor/cadastrar";
     }
 
+    @GetMapping("tutor/consultar/todos")
+    public ModelAndView consultarTutorTodos() {
+        ModelAndView mav = new ModelAndView("tutor/listarTutorAll");
+        mav.addObject("tutores", tutorService.all());
+        return mav;
+    }
 
-
+    @GetMapping("tutor/consultar/{id}")
+    public ModelAndView consultarTutorOne(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView("tutor/listarTutorOne");
+        mav.addObject("tutor", tutorService.one(id));
+        mav.addObject("animais", animalService.allByIdTutor(id));
+        return mav;
+    }
 }
