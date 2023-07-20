@@ -1,0 +1,62 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <title>Pets</title>
+</head>
+
+<body>
+    <div class="d-flex p-2 justify-content-center">
+        <div class="d-flex flex-column">
+            <div class="p-2">
+                <h1>Alterar dados do Pet</h1>
+                <hr>
+            </div>
+            <div class="container">
+                <form 
+                method="post" 
+                class="form-group">
+                    <div class="form-group">
+                        <label for="id_animal">Código</label>
+                        <input type="text" name="id" id="id" class="form-control"
+                            th:value="${animal.getId()}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome" class="form-control" th:value="${animal.getNome()}">
+                    </div>
+                    <div class="form-group">
+                        <label for="nascimento">Data de Nascimento</label>
+                        <input type="date" name="nascimento" id="nascimento" class="form-control"
+                            th:value="${animal.getNascimento()}">
+                    </div>
+                    <div class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <select name="sexo" id="sexo" class="form-control">
+                            <option value="0" th:selected="${animal.getSexo() == 0}">Fêmea</option>
+                            <option value="1" th:selected="${animal.getSexo() == 1}">Macho</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tutor">Tutor</label>
+                        <select name="tutor" id="tutor" class="form-control">
+                            <option th:each="t: ${tutores}" th:value="${t.getId()}"
+                                th:text="${t.getId()} + ' - ' + ${t.getNome()}"
+                                th:selected="${t.getId() == animal.getTutor().getId()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="form-control btn btn-primary" value="Salvar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -23,21 +23,25 @@
 						<th>Nome</th>
 						<th>Data de Nascimento</th>
 						<th>Idade</th>
+						<th>Sexo</th>
                         <th>Tutor</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="animal: ${animais}">
-						<td th:text="${animal.getNome()}" />
+					<tr>
+						<td th:text="${animal.getNome()}"/>
 						<td th:text="${animal.getNascimento()}" />
 						<td th:text="${animal.getIdade()}" />
+						<td th:text="${animal.getSexo() == 1 ? 'Macho' : 'Fêmea'}" />
                         <td th:text="${animal.getTutor().getNome()}" />
 					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
 						<td colspan="5">
-							<a href="/" class="btn btn-primary">Voltar</a>
+							<a th:href="'/modals/animal/' + ${animal.getId()}" class="btn btn-primary">Alterar</a>
+							<!-- <a th:href="'/modals/animal/' + ${animal.getId()}" class="btn btn-secondary">Alterar</a> -->
+							<a href="/" class="btn btn-secondary">Voltar</a>
 						</td>
 					</tr>
 				</tfoot>

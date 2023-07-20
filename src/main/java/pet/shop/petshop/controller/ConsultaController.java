@@ -18,7 +18,7 @@ public class ConsultaController {
     @GetMapping("animal/consultar/{id}")
     public ModelAndView consultarAnimalOne(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("animal/listarUmAnimal", OK);
-        mav.addObject("animais", animalService.one(id));
+        mav.addObject("animal", animalService.one(id));
         return mav;
     }
 

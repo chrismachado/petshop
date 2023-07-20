@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import pet.shop.petshop.dto.AnimalDto;
-import pet.shop.petshop.model.Animal;
 import pet.shop.petshop.model.Tutor;
 import pet.shop.petshop.service.AnimalService;
 import pet.shop.petshop.service.TutorService;

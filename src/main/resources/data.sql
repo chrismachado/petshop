@@ -82,4 +82,4 @@ INSERT INTO ANIMAL (id, id_tutor, nome, nascimento, sexo)
         , tutor_sequence.CURRVAL
         , 'Nnah'
         , '2012-01-01'
-        , 1);
+        , 0);

@@ -24,6 +24,7 @@
 					<th>Nome</th>
 					<th>Data de Nascimento</th>
 					<th>Idade</th>
+					<th>Sexo</th>
 					<th>Tutor</th>
 					<th>Ação</th>
 				</tr>
@@ -33,6 +34,7 @@
 					<td th:text="${animal.getNome()}" />
 					<td th:text="${animal.getNascimento()}" />
 					<td th:text="${animal.getIdade()}" />
+					<td th:text="${animal.getSexo() == 1 ? 'Macho' : 'Fêmea'}" />
 					<td th:text="${animal.getTutor().getNome()}" />
 					<td>
 						<div class="container">
