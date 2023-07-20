@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pets</title>
+</head>
+<body>
+    olá
+    <h2>Formulário</h2>
+    <form
+        th:action="'/animal/deletar/' + ${animal.getId()}" 
+        th:method="delete">
+        <input type="hidden" name="_method" value="delete">
+        <input type="text" name="" id="" th:value="${animal.getId()}" disabled>
+        <input type="text" name="" id="" th:value="${animal.getNome()}" disabled>
+        <input type="text" name="" id="" th:value="${animal.getNascimento()}" disabled>
+        <input type="text" name="" id="" th:value="${animal.getIdade()}" disabled>
+        <input type="text" name="" id="" th:value="${animal.getTutor().getId()}" disabled>
+        <input type="submit" value="Excluir">
+
+    </form>
+</body>
+</html>
