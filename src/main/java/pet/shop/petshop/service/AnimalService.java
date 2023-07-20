@@ -31,7 +31,7 @@ public class AnimalService {
         return repository.findById(id)
             .map(
                 animalModel -> {
-                    BeanUtils.copyProperties(animal, animalModel, "tutor");
+                    BeanUtils.copyProperties(animal, animalModel);
                     animalModel.setId(id);
                     return repository.save(animalModel);
                 })
@@ -47,5 +47,9 @@ public class AnimalService {
         Animal animal = repository.findById(id).orElseThrow();
         repository.deleteById(id);
         return animal;
+    }
+
+    public List<Animal> allByIdTutor(Long idTutor) {
+        return repository.findAllByIdTutor(idTutor);
     }
 }
