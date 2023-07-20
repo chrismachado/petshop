@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Pets</title>
+</head>
+
+<body>
+    <div class="container table-responsive-xl p-3">
+        <h3>Tutores</h3>
+        <table class="table table-bordered table-striped">
+            <caption>Descrição tutores</caption>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tutor: ${tutores}">
+                    <td th:text="${tutor.getId()}" />
+                    <td th:text="${tutor.getNome()}" />
+                    <td th:text="${tutor.getNascimento()}" />
+                    <td th:text="${tutor.getCpf()}" />
+                    <td th:text="${tutor.getEmail()}" />
+                    <td>
+						<div class="container">
+							<div class="row justify-content-md-center">
+								<div class="col-md-auto">
+									<a th:href="'/tutor/consultar/' + ${tutor.getId()}"
+										class="btn btn-primary">
+										<i class="bi bi-pencil-square"></i>
+									</a>
+									<a th:method="delete"
+										th:href="'/api/v1/tutor/'+ ${tutor.getId()}"
+										class="btn btn-outline-danger">
+										<i class="bi bi-trash3-fill"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</td>
+                </tr>
+            </tbody>
+			<tfoot>
+				<tr class="">
+					<td colspan="6" class="text-center">
+						<a href="/animal/cadastrar" class="btn btn-primary">
+							<span><i width="32" height="32" class="bi bi-plus-circle-fill"></i></span> <span>Novo
+								Pet</span>
+						</a>
+						<a href="/tutor/cadastrar" class="btn btn-primary">
+							<span><i class="bi bi-person-plus-fill"></i></span></i>
+							<span>Novo Tutor</span>
+						</a>
+						<a href="/" class="btn btn-secondary">
+							<span>Voltar</span>
+						</a>
+					</td>
+				</tr>
+			</tfoot>
+        </table>
+    </div>
+</body>
+</html>

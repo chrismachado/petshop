@@ -30,6 +30,7 @@
           <div class="form-group">
             <label for="sexo">Sexo</label>
             <select name="sexo" id="sexo" class="form-control">
+              <option value="-1" selected>Selectione o sexo</option>
               <option value="0">Fêmea</option>
               <option value="1">Macho</option>
             </select>
@@ -37,6 +38,7 @@
           <div class="form-group">
             <label for="tutor">Tutor</label>
             <select name="tutor" id="tutor" class="form-control">
+              <option value="0" selected>Selecione um tutor</option>
               <option 
                 th:each="tutor: ${tutores}" 
                 th:value="${tutor.getId()}" 
