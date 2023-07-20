@@ -30,14 +30,14 @@ CREATE SEQUENCE animal_sequence
     NOCYCLE;
 
 -- TUTOR
-INSERT INTO TUTOR (id, nome, nascimento, cpf, email) 
-    VALUES (
-        0
-        , 'Indefinido'
-        , Null
-        , Null
-        , Null
-    );
+-- INSERT INTO TUTOR (id, nome, nascimento, cpf, email) 
+--     VALUES (
+--         0
+--         , 'Indefinido'
+--         , Null
+--         , Null
+--         , Null
+--     );
 
 INSERT INTO TUTOR (id, nome, nascimento, cpf, email) 
     VALUES (
