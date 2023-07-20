@@ -21,6 +21,7 @@
 
 			<thead>
 				<tr>
+					<th>Código</th>
 					<th>Nome</th>
 					<th>Data de Nascimento</th>
 					<th>Idade</th>
@@ -31,6 +32,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="animal: ${animais}">
+					<td th:text="${animal.getId()}"/>
 					<td th:text="${animal.getNome()}" />
 					<td th:text="${animal.getNascimento()}" />
 					<td th:text="${animal.getIdade()}" />
@@ -40,11 +42,13 @@
 						<div class="container">
 							<div class="row justify-content-md-center">
 								<div class="col-md-auto">
-									<a th:href="'http://127.0.0.1:8080/animal/consultar/' + ${animal.getId()}"
+									<a th:href="'/animal/consultar/' + ${animal.getId()}"
 										class="btn btn-primary">
 										<i class="bi bi-pencil-square"></i>
 									</a>
-									<a th:method="delete" th:href="'http://127.0.0.1:8080/api/v1/animal/'+ ${animal.getId()}" class="btn btn-outline-danger">
+									<a th:method="delete"
+										th:href="'/animal/deletar/'+ ${animal.getId()}"
+										class="btn btn-outline-danger">
 										<i class="bi bi-trash3-fill"></i>
 									</a>
 								</div>
@@ -55,12 +59,13 @@
 			</tbody>
 			<tfoot>
 				<tr class="">
-					<td colspan="5" class="text-center">
+					<td colspan="6" class="text-center">
 						<a href="/animal/cadastrar" class="btn btn-primary">
-							<span><i width="32" height="32" class="bi bi-plus-circle-fill"></i></span> <span>Novo Pet</span>
+							<span><i width="32" height="32" class="bi bi-plus-circle-fill"></i></span> <span>Novo
+								Pet</span>
 						</a>
 						<a href="/tutor/cadastrar" class="btn btn-primary">
-							<span><i class="bi bi-person-plus-fill"></i></span></i> 
+							<span><i class="bi bi-person-plus-fill"></i></span></i>
 							<span>Novo Tutor</span>
 						</a>
 						<a href="/" class="btn btn-secondary">
@@ -72,4 +77,5 @@
 		</table>
 	</div>
 </body>
+
 </html>
