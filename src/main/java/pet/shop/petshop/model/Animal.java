@@ -12,15 +12,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NegativeOrZero;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -42,7 +47,11 @@ public class Animal {
 
     @NotBlank
     private String nome;
+
+    @NotNull
     private LocalDate nascimento;
+    
+    @PositiveOrZero
     private int sexo;
 
     @Transient
@@ -52,7 +61,6 @@ public class Animal {
     @JoinColumn(name = "id_tutor")
     @NotNull
     private Tutor tutor;
-
     
     public Animal(String nome, LocalDate nascimento, int sexo) {
         this.nome = nome;
