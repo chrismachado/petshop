@@ -39,14 +39,6 @@ CREATE SEQUENCE animal_sequence
 --         , Null
 --     );
 
-INSERT INTO TUTOR (id, nome, nascimento, cpf, email) 
-    VALUES (
-        tutor_sequence.NEXTVAL
-        , 'Christiano Machado da Costa'
-        , '1997-12-17'
-        , '05734977373'
-        , 'christianomachdo10@gmail.com'
-    );
 
 INSERT INTO TUTOR (id, nome, nascimento, cpf, email) 
 VALUES (
@@ -56,6 +48,7 @@ VALUES (
     , '21413223320'
     , 'valderleylopesmachado@gmail.com'
 );
+
 
 
 -- ANIMAL
@@ -82,4 +75,55 @@ INSERT INTO ANIMAL (id, id_tutor, nome, nascimento, sexo)
         , tutor_sequence.CURRVAL
         , 'Nnah'
         , '2012-01-01'
+        , 0);
+
+INSERT INTO TUTOR (id, nome, nascimento, cpf, email) 
+    VALUES (
+        tutor_sequence.NEXTVAL
+        , 'Christiano Machado da Costa'
+        , '1997-12-17'
+        , '05734977373'
+        , 'christianomachdo10@gmail.com'
+    );
+
+INSERT INTO ANIMAL (id, id_tutor, nome, nascimento, sexo) 
+    VALUES (
+        animal_sequence.NEXTVAL
+        , tutor_sequence.CURRVAL
+        , 'Lulu'
+        , '2012-01-01'
+        , 0);
+
+INSERT INTO ANIMAL (id, id_tutor, nome, nascimento, sexo) 
+    VALUES (
+        animal_sequence.NEXTVAL
+        , tutor_sequence.CURRVAL
+        , 'Xibica'
+        , '2020-01-01'
+        , 0);
+
+
+INSERT INTO ANIMAL (id, id_tutor, nome, nascimento, sexo) 
+    VALUES (
+        animal_sequence.NEXTVAL
+        , tutor_sequence.CURRVAL
+        , 'Woody'
+        , '2017-01-01'
+        , 1);
+
+INSERT INTO TUTOR (id, nome, nascimento, cpf, email) 
+VALUES (
+    tutor_sequence.NEXTVAL
+    , 'Yanca Soares Pontes'
+    , '1996-04-03'
+    , '91250597449'
+    , 'valderleylopesmachado@gmail.com'
+);
+
+INSERT INTO ANIMAL (id, id_tutor, nome, nascimento, sexo) 
+    VALUES (
+        animal_sequence.NEXTVAL
+        , tutor_sequence.CURRVAL
+        , 'Charlote'
+        , '2020-01-01'
         , 0);
