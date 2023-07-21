@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import static org.springframework.http.HttpStatus.OK;
 
 import java.util.List;
 
@@ -45,9 +43,9 @@ public class AnimalController {
     }
 
     @PostMapping("cadastrar")
-    public String cadastrarAnimalForm(AnimalDto animal) {
-        animalService.save(animal.toAnimal());
-        return "redirect:/animal/cadastrar";
+    public ModelAndView cadastrarAnimalForm(AnimalDto dto) {
+        Animal animal = animalService.save(dto.toAnimal());
+        return new ModelAndView("redirect:/animal/consultar/" + animal.getId());
     }
 
     @GetMapping("cadastrar")
