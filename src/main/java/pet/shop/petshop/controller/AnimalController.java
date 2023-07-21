@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -19,6 +21,7 @@ import pet.shop.petshop.service.AnimalService;
 import pet.shop.petshop.service.TutorService;
 
 @Controller
+@RequestMapping("animal")
 public class AnimalController {
 
     @Autowired
@@ -27,27 +30,27 @@ public class AnimalController {
     @Autowired
     private TutorService tutorService;
 
-    @GetMapping("animal/consultar/{id}")
+    @GetMapping("consultar/{id}")
     public ModelAndView consultarAnimalOne(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("animal/listarAnimalOne");
         mav.addObject("animal", animalService.one(id));
         return mav;
     }
 
-    @GetMapping("animal/consultar/todos")
+    @GetMapping("consultar/todos")
     public ModelAndView consultarAnimalAll() {
         ModelAndView mav = new ModelAndView("animal/listarAnimalAll");
         mav.addObject("animais", animalService.all());
         return mav;
     }
 
-    @PostMapping("/animal/cadastrar")
+    @PostMapping("cadastrar")
     public String cadastrarAnimalForm(AnimalDto animal) {
         animalService.save(animal.toAnimal());
         return "redirect:/animal/cadastrar";
     }
 
-    @GetMapping("animal/cadastrar")
+    @GetMapping("cadastrar")
     public ModelAndView cadastrarAnimalForm() {
         ModelAndView mav = new ModelAndView("/animal/formCadastrarAnimal");
         List<Tutor> tutores = tutorService.all();
@@ -55,7 +58,7 @@ public class AnimalController {
         return mav;
     }
 
-    @GetMapping("animal/alterar/{id}")
+    @GetMapping("alterar/{id}")
     public ModelAndView alterarAnimal(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("animal/alterarAnimalModal");
 
@@ -64,14 +67,14 @@ public class AnimalController {
         return mav;
     }
 
-    // TO-DO: Alterar para PutMapping
-    @PostMapping("animal/alterar/{id}")
-    public String alterarAnimal(@PathVariable Long id, AnimalDto dto) {
+    @PutMapping("alterar/{id}")
+    public ModelAndView alterarAnimal(@PathVariable Long id, AnimalDto dto) {
+        ModelAndView mav = new ModelAndView("redirect:/animal/consultar/" + id);
         animalService.update(dto.toAnimal(), id);
-        return "redirect:/animal/alterar/" + id;
+        return mav;
     }
 
-    @GetMapping("animal/deletar/{id}")
+    @GetMapping("deletar/{id}")
     public ModelAndView deletarAnimalView(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("animal/deletarAnimal");
         Animal animal = animalService.one(id);
@@ -79,12 +82,10 @@ public class AnimalController {
         return mav;
     }
 
-    @DeleteMapping("animal/deletar/{id}") 
+    @DeleteMapping("deletar/{id}") 
     public ModelAndView deletarAnimalOne(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("redirect:/animal/consultar/todos");
         animalService.delete(id);
-
-
         return mav;
     }
     
