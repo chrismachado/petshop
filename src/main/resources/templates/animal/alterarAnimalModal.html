@@ -17,8 +17,10 @@
             </div>
             <div class="container">
                 <form 
-                method="post" 
-                class="form-group">
+                    th:action="'/animal/alterar/' + ${animal.getId()}"
+                    th:method="put" 
+                    class="form-group">
+                    <input type="hidden" name="_method" value="put">
                     <div class="form-group">
                         <label for="id_animal">Código</label>
                         <input type="text" name="id" id="id" class="form-control"
