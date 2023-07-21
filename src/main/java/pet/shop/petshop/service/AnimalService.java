@@ -49,7 +49,7 @@ public class AnimalService {
         return animal;
     }
 
-    public List<Animal> allByIdTutor(Long idTutor) {
+    public List<Animal> findAllByIdTutor(Long idTutor) {
         return repository.findAllByIdTutor(idTutor);
     }
 }

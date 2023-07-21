@@ -27,7 +27,7 @@ public class TutorService {
         return repository.findAll();
     }
 
-    public Tutor update(Tutor tutor, Long id) {
+    public Tutor update(Long id, Tutor tutor) {
         return repository.findById(id)
             .map(tutorModel -> {
                 BeanUtils.copyProperties(tutor, tutorModel);
