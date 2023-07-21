@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,12 +38,13 @@ public class Tutor {
         , generator = "tutor_sequence"
     )
     private Long id;
+    @NotNull @NotBlank
     private String nome;
     @NotNull
     private LocalDate nascimento;
-    @CPF
+    @CPF @NotNull
     private String cpf;
-    @Email
+    @Email @NotNull
     private String email;
     
     public Tutor(String nome, LocalDate nascimento, @CPF String cpf, @Email String email) {
