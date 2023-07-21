@@ -23,8 +23,8 @@ public class AnimalService {
         return repository.findById(id).orElseThrow();
     }
 
-    public void save(Animal animal) {
-        repository.save(animal);
+    public Animal save(Animal animal) {
+        return repository.save(animal);
     }
 
     public Animal update(Animal animal, Long id) {
@@ -49,7 +49,7 @@ public class AnimalService {
         return animal;
     }
 
-    public List<Animal> findAllByIdTutor(Long idTutor) {
+    public List<Animal> allByIdTutor(Long idTutor) {
         return repository.findAllByIdTutor(idTutor);
     }
 }
